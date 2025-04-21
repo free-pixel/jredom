@@ -1,4 +1,4 @@
-package com.example.redisorm.core;
+package com.rockstonegame.redisorm.core;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

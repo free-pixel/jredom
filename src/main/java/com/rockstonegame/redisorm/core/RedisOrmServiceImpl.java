@@ -1,6 +1,6 @@
-package com.example.redisorm.core;
+package com.rockstonegame.redisorm.core;
 
-import com.example.redisorm.api.RedisOrmService;
+import com.rockstonegame.redisorm.api.RedisOrmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

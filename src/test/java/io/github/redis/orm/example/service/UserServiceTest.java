@@ -2,7 +2,7 @@ package io.github.redis.orm.example.service;
 
 import io.github.redis.orm.example.entity.User;
 import io.github.redis.orm.example.mapper.UserMapper;
-import com.example.redisorm.core.RedisOrmServiceImpl;
+import com.rockstonegame.redisorm.core.RedisOrmServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -44,7 +44,7 @@ this plan like use the proxy pattern to solve the problem.
 summary: the only problem is how to control the invoke time, and the invoke mechanism.
 
 
-
+synchronous call ；synchronized call 。
 
 
 

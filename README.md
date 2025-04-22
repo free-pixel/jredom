@@ -1,15 +1,15 @@
 
+## About JRedom
 
+This Redis ORM solution is currently a temporary one. It is more of an implementation based on "convention." It is simple enough, flexible enough, and you can even directly copy the code without needing to include a jar file.
+
+
+## Maybe the solution
 
 1、basicly implementation a simple redis orm lib
 
-
-
-
 our goal is implement one redis orm lib, when you change your db data, the redis
 case sync at once, at the same time keep the code simple and clean.
-
-
 
 
 there are three plan to slove the problem

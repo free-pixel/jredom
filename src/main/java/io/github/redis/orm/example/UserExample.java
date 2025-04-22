@@ -14,22 +14,35 @@ public class UserExample implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Create a new user
-        User user = new User(null, "john_doe", "john@example.com");
-        user = userService.createUser(user);
-        System.out.println("Created user: " + user.getId());
+        // Using original pattern
+        User user1 = new User(null, "john_doe", "john@example.com");
+        user1 = userService.createUser(user1);
+        System.out.println("Created user (original pattern): " + user1.getId());
 
-        // Get user (will be from Redis)
-        User cachedUser = userService.getUser(user.getId());
-        System.out.println("Found user in cache: " + cachedUser.getUsername());
+        // Using new pattern with inner function
+        User user2 = new User(null, "jane_doe", "jane@example.com");
+        user2 = userService.createUser(user2, () -> {
+            // Custom Redis operations here
+            System.out.println("Executing custom Redis operation");
+        });
+        System.out.println("Created user (new pattern): " + user2.getId());
 
-        // Update user
-        cachedUser.setEmail("john.doe@example.com");
-        userService.updateUser(cachedUser);
-        System.out.println("Updated user email");
+        // Update example with original pattern
+        user1.setEmail("john.updated@example.com");
+        userService.updateUser(user1);
 
-        // Delete user
-        userService.deleteUser(user.getId());
-        System.out.println("Deleted user");
+        // Update example with new pattern
+        user2.setEmail("jane.updated@example.com");
+        userService.updateUser(user2, () -> {
+            // Custom Redis operations here
+            System.out.println("Executing custom Redis update operation");
+        });
+
+        // Delete examples
+        userService.deleteUser(user1.getId()); // Original pattern
+        userService.deleteUser(user2.getId(), () -> {
+            // Custom Redis delete operation
+            System.out.println("Executing custom Redis delete operation");
+        });
     }
 }

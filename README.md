@@ -1,6 +1,16 @@
 
 ## About JRedom (Beta / Experimental)
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+![Last Commit](https://img.shields.io/github/last-commit/free-pixel/jredom)
+![Open Issues](https://img.shields.io/github/issues/free-pixel/jredom)
+![Pull Requests](https://img.shields.io/github/issues-pr/free-pixel/jredom)
+![License](https://img.shields.io/github/license/free-pixel/jredom)
+![Swift](https://img.shields.io/badge/built_with-Java-orange?logo=swift)
+![Platform](https://img.shields.io/badge/platform-Java-blue)
+![GitHub Stars](https://img.shields.io/github/stars/free-pixel/jredom?style=social)
+
+
 This Redis ORM solution is currently a temporary one. It is more of an implementation based on "convention." It is simple enough, flexible enough, and you can even directly copy the code without needing to include a jar file.
 
 

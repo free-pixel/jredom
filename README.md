@@ -6,7 +6,7 @@
 ![Open Issues](https://img.shields.io/github/issues/free-pixel/jredom)
 ![Pull Requests](https://img.shields.io/github/issues-pr/free-pixel/jredom)
 ![License](https://img.shields.io/github/license/free-pixel/jredom)
-![Swift](https://img.shields.io/badge/built_with-Java-orange?logo=swift)
+![Swift](https://img.shields.io/badge/built_with-Java-orange?logo=java)
 ![Platform](https://img.shields.io/badge/platform-Java-blue)
 ![GitHub Stars](https://img.shields.io/github/stars/free-pixel/jredom?style=social)
 

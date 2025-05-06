@@ -29,7 +29,7 @@ there are three plan to slove the problem
 
         // 1. Update MySQL
         userMapper.update(user);
-        
+
         // 2. Update Redis
         funcRedisOrm();
 
@@ -48,4 +48,7 @@ synchronous call ；synchronized call 。
 
 
 
-
+[background-and-motivation-for-the-project.en.md](docs/background-and-motivation-for-the-project.en.md)
+[background-and-motivation-for-the-project.ja.md](docs/background-and-motivation-for-the-project.ja.md)
+[background-and-motivation-for-the-project.zh-CN.md](docs/background-and-motivation-for-the-project.zh-CN.md)
+[background-and-motivation-for-the-project.zh-Hant.md](docs/background-and-motivation-for-the-project.zh-Hant.md)

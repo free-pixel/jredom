@@ -49,8 +49,8 @@ synchronous call ；synchronized call 。
 
 ## Background and Motivation
 
-- [简体中文 🇨🇳](background-and-motivation-for-the-project.zh-CN.md)
-- [English 🇺🇸](background-and-motivation-for-the-project.en.md)
-- [繁體中文 🇹🇼](background-and-motivation-for-the-project.zh-Hant.md)
-- [日本語 🇯🇵](background-and-motivation-for-the-project.ja.md)
+- [简体中文](background-and-motivation-for-the-project.zh-CN.md)
+- [English](background-and-motivation-for-the-project.en.md)
+- [繁體中文](background-and-motivation-for-the-project.zh-Hant.md)
+- [日本語](background-and-motivation-for-the-project.ja.md)
 

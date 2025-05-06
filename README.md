@@ -54,3 +54,8 @@ synchronous call ；synchronized call 。
 - [繁體中文](docs/background-and-motivation-for-the-project.zh-Hant.md)
 - [日本語](docs/background-and-motivation-for-the-project.ja.md)
 
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).  
+Copyright © 2025 Rock Stone

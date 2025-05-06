@@ -2,11 +2,6 @@
 
 ## プロジェクトの背景と動機
 
-- [简体中文 🇨🇳](background-and-motivation-for-the-project.zh-CN.md)
-- [English 🇺🇸](background-and-motivation-for-the-project.en.md)
-- [繁體中文 🇹🇼](background-and-motivation-for-the-project.zh-Hant.md)
-- [日本語 🇯🇵](background-and-motivation-for-the-project.ja.md)
-
 
 数年前、私はゲーム開発に従事しており、その頃 Redis がゲーム業界で流行し始めました。ウェブ業界と同様に、Redis はゲームでも業務キャッシュとして利用されていました。
 

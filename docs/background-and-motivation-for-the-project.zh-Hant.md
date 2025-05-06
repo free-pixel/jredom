@@ -2,11 +2,6 @@
 
 ## 項目產生的背景與動機
 
-- [简体中文 🇨🇳](background-and-motivation-for-the-project.zh-CN.md)
-- [English 🇺🇸](background-and-motivation-for-the-project.en.md)
-- [繁體中文 🇹🇼](background-and-motivation-for-the-project.zh-Hant.md)
-- [日本語 🇯🇵](background-and-motivation-for-the-project.ja.md)
-
 
 多年前，我從事遊戲開發工作，Redis 開始在遊戲產業中流行起來。和互聯網應用一樣，Redis 在遊戲中同樣被用作業務緩存。
 

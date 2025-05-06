@@ -2,11 +2,6 @@
 
 ## 项目产生的背景与动机
 
-- [简体中文 🇨🇳](background-and-motivation-for-the-project.zh-CN.md)
-- [English 🇺🇸](background-and-motivation-for-the-project.en.md)
-- [繁體中文 🇹🇼](background-and-motivation-for-the-project.zh-Hant.md)
-- [日本語 🇯🇵](background-and-motivation-for-the-project.ja.md)
-
 
 多年前，我在做游戏开发，redis刚才游戏行业流行起来。和互联网行业应用一样， redis在游戏行业也是
 做为业务缓存使用。

@@ -1,5 +1,5 @@
 
-## About JRedom
+## About JRedom (Beta / Experimental)
 
 This Redis ORM solution is currently a temporary one. It is more of an implementation based on "convention." It is simple enough, flexible enough, and you can even directly copy the code without needing to include a jar file.
 

@@ -47,8 +47,3 @@ summary: the only problem is how to control the invoke time, and the invoke mech
 synchronous call ；synchronized call 。
 
 
-
-[background-and-motivation-for-the-project.en.md](docs/background-and-motivation-for-the-project.en.md)
-[background-and-motivation-for-the-project.ja.md](docs/background-and-motivation-for-the-project.ja.md)
-[background-and-motivation-for-the-project.zh-CN.md](docs/background-and-motivation-for-the-project.zh-CN.md)
-[background-and-motivation-for-the-project.zh-Hant.md](docs/background-and-motivation-for-the-project.zh-Hant.md)

@@ -25,3 +25,5 @@ hs_err_pid*
 replay_pid*
 .vscode/*
 .idea/*
+jredom-core/target/*
+jredom-examples/target/*

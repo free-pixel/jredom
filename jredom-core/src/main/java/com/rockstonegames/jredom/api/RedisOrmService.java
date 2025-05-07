@@ -1,4 +1,4 @@
-package com.rockstonegame.redisorm.api;
+package com.rockstonegames.redisorm.api;
 import java.util.Optional;
 
 public interface RedisOrmService<T, ID> {

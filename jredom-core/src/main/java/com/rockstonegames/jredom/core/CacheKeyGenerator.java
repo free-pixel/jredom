@@ -1,4 +1,4 @@
-package com.rockstonegame.redisorm.core;
+package com.rockstonegames.redisorm.core;
 
 public class CacheKeyGenerator {
     public static String generate(Class<?> clazz, Object key) {

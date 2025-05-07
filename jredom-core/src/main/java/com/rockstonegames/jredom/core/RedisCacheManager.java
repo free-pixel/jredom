@@ -1,4 +1,4 @@
-package com.rockstonegame.redisorm.core;
+package com.rockstonegames.redisorm.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

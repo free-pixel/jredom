@@ -1,4 +1,4 @@
-package com.rockstonegame.redisorm.core;
+package com.rockstonegames.redisorm.core;
 
 @FunctionalInterface
 public interface RedisOrmFunction {

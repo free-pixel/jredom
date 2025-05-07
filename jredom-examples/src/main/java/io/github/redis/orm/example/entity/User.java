@@ -4,14 +4,14 @@ import com.rockstonegames.jredom.core.EntityWithId;
 
 public class User implements EntityWithId<Long> {
     private Long id;
-    private String username;
+    private String name;  // 确保属性名为name而不是username
     private String email;
     
     public User() {}
     
-    public User(Long id, String username, String email) {
+    public User(Long id, String name, String email) {
         this.id = id;
-        this.username = username;
+        this.name = name;
         this.email = email;
     }
 
@@ -24,12 +24,12 @@ public class User implements EntityWithId<Long> {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

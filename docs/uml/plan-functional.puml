@@ -1,0 +1,100 @@
+@startuml Function-based Redis Cache Class Diagram
+
+skinparam packageStyle rectangle
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam nodesep 80
+skinparam ranksep 100
+
+interface EntityWithId<ID> {
+  +ID getId()
+}
+
+class CacheKeyGenerator {
+  +{static} String generate(Class<?> clazz, Object key)
+}
+
+class RedisCacheManager {
+  +<T> Optional<T> get(String key, Class<T> type)
+  +<T> void put(String key, T value, Duration expiration)
+  +void delete(String key)
+}
+
+interface RedisOrmFunction<T> {
+  +void execute(T t)
+}
+
+class RedisOrmServiceImpl<T, ID> {
+  -RedisCacheManager cacheManager
+  -Class<T> entityClass
+  -Duration cacheDuration
+  +T save(T entity)
+  +void delete(ID id)
+  +Optional<T> findById(ID id)
+  +void refresh(ID id)
+  -String generateKey(ID id)
+  -ID getEntityId(T entity)
+}
+
+interface RedisOrmService<T, ID> {
+  +T save(T entity)
+  +void delete(ID id)
+  +Optional<T> findById(ID id)
+  +void refresh(ID id)
+}
+
+class User implements EntityWithId {
+  -Long id
+  -String name
+  -String email
+  +Long getId()
+}
+
+interface UserMapper {
+  +void insert(User user)
+  +void update(User user)
+  +void delete(Long id)
+  +User findById(Long id)
+}
+
+class UserService {
+  -UserMapper userMapper
+  -RedisOrmServiceImpl<User, Long> redisOrmService
+  +User createUser(User user)
+  +User createUser(User user, RedisOrmFunction<User> redisOrmFunction)
+  +User updateUser(User user)
+  +User updateUser(User user, RedisOrmFunction<User> redisOrmFunction)
+  +void deleteUser(Long id)
+  +void deleteUser(Long id, RedisOrmFunction<Long> redisOrmFunction)
+  +User getUser(Long id)
+}
+
+class UserExample {
+  -UserService userService
+  +void run(String... args)
+}
+
+' Relationships
+RedisOrmServiceImpl ..|> RedisOrmService : implements
+RedisOrmServiceImpl --> RedisCacheManager : uses
+RedisOrmServiceImpl --> CacheKeyGenerator : uses
+RedisOrmServiceImpl --> EntityWithId : uses
+
+UserService --> UserMapper : uses
+UserService --> RedisOrmServiceImpl : uses
+UserService --> RedisOrmFunction : uses
+UserExample --> UserService : uses
+User ..|> EntityWithId : implements
+
+' Layout hints
+EntityWithId -[hidden]-> CacheKeyGenerator
+CacheKeyGenerator -[hidden]-> RedisCacheManager
+RedisCacheManager -[hidden]-> RedisOrmFunction
+RedisOrmFunction -[hidden]-> RedisOrmService
+RedisOrmService -[hidden]-> RedisOrmServiceImpl
+
+User -[hidden]-> UserMapper
+UserMapper -[hidden]-> UserService
+UserService -[hidden]-> UserExample
+
+@enduml

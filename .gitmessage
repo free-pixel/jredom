@@ -14,6 +14,26 @@
 # |     ci       - Changes to our CI configuration files and scripts
 # |     chore    - Other changes that don't modify src or test files
 # |
+# |    Scopes
+# |     core: Changes related to core functionality and base components
+# |     serialization: Changes to serialization/deserialization features
+# |     cache: Changes to cache management and strategies
+# |     orm: Changes to ORM mapping and data access functionality
+# |     annotation: Changes to annotation definitions and processing
+# |     aop: Changes to aspect-oriented programming features
+# |     config: Configuration-related changes
+# |     example: Changes to example code and demonstrations
+# |     docs: Documentation-related changes
+# |     build: Changes to build system and dependency management
+# |     test: Test-related changes
+# |     perf: Performance optimization changes
+# |     api: Changes to API design and interfaces
+# |     key: Changes to cache key generation and management
+# |     event: Changes to event-driven features and listeners
+# |     integration: Changes related to integration with other systems
+# |     protobuf: Changes specific to Protobuf functionality
+# |     json: Changes specific to JSON functionality
+# |
 # |   Subject:
 # |     Use imperative, present tense: "change" not "changed" nor "changes"
 # |     Don't capitalize the first letter

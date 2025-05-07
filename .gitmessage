@@ -1,4 +1,6 @@
-# <type>: <subject>
+# <type>(<scope>): <subject>
+# |       |
+# |       +-> Optional scope: core, examples, docs, etc.
 # |
 # |   Types:
 # |     feat     - A new feature

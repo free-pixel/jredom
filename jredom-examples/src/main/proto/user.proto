@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package io.github.redis.orm.example.proto;
+
+option java_multiple_files = true;
+option java_package = "io.github.redis.orm.example.proto";
+option java_outer_classname = "UserProtoClass";
+
+message UserProto {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+}

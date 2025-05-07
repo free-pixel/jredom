@@ -14,6 +14,24 @@
 This Redis ORM solution is currently a temporary one. It is more of an implementation based on "convention." It is simple enough, flexible enough, and you can even directly copy the code without needing to include a jar file.
 
 
+**add protobuf serial/deserial object**
+
+you can use spring manager your serial type, default is json, you can change to protobuf.
+
+```java
+
+@Configuration
+public class RedisConfig {
+    @Bean
+    public RedisCacheManager redisCacheManager(RedisTemplate<String, String> redisTemplate) {
+        RedisCacheManager manager = new RedisCacheManager();
+        manager.setSerializationType(RedisCacheManager.SerializationType.PROTOBUF); // 或JSON
+        return manager;
+    }
+}
+
+```
+
 ## Maybe the solution
 
 1、basicly implementation a simple redis orm lib

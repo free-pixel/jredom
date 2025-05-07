@@ -1,0 +1,90 @@
+@startuml Annotation-based Redis Cache Class Diagram
+
+skinparam packageStyle rectangle
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam nodesep 80
+skinparam ranksep 100
+
+enum CacheOperationType {
+  +SAVE
+  +DELETE
+  +REFRESH
+}
+
+annotation RedisCache {
+  +CacheOperationType operation() default SAVE
+  +int idParamIndex() default 0
+  +int expireMinutes() default 30
+}
+
+interface EntityWithId<ID> {
+  +ID getId()
+}
+
+class CacheKeyGenerator {
+  +{static} String generate(Class<?> clazz, Object key)
+}
+
+class RedisCacheManager {
+  +<T> Optional<T> get(String key, Class<T> type)
+  +<T> void put(String key, T value, Duration expiration)
+  +void delete(String key)
+}
+
+class RedisCacheAspect {
+  -RedisCacheManager cacheManager
+  +Object handleRedisCache(ProceedingJoinPoint joinPoint)
+  -void handleSaveOperation(Object result, int expireMinutes)
+  -void handleDeleteOperation(Object[] args, int idParamIndex)
+  -void handleRefreshOperation(Object[] args, int idParamIndex)
+}
+
+class User implements EntityWithId {
+  -Long id
+  -String name
+  -String email
+  +Long getId()
+}
+
+interface UserMapper {
+  +void insert(User user)
+  +void update(User user)
+  +void delete(Long id)
+  +User findById(Long id)
+}
+
+class AnnotationUserService {
+  -UserMapper userMapper
+  +@RedisCache(operation=SAVE) User createUser(User user)
+  +@RedisCache(operation=SAVE) User updateUser(User user)
+  +@RedisCache(operation=DELETE) void deleteUser(Long id, Class<User> userClass)
+  +User getUser(Long id)
+  -@RedisCache(operation=SAVE) User saveToCache(User user)
+}
+
+class AnnotationExample {
+  -AnnotationUserService annotationUserService
+  +void run(String... args)
+}
+
+' Relationships
+RedisCache --> CacheOperationType
+RedisCacheAspect --> RedisCache : processes
+RedisCacheAspect --> RedisCacheManager : uses
+RedisCacheAspect --> CacheKeyGenerator : uses
+
+AnnotationUserService --> UserMapper : uses
+AnnotationUserService ..> RedisCache : annotated with
+AnnotationExample --> AnnotationUserService : uses
+User ..|> EntityWithId : implements
+
+' Layout hints
+CacheOperationType -[hidden]-> RedisCache
+EntityWithId -[hidden]-> CacheKeyGenerator
+CacheKeyGenerator -[hidden]-> RedisCacheManager
+User -[hidden]-> UserMapper
+UserMapper -[hidden]-> AnnotationUserService
+AnnotationUserService -[hidden]-> AnnotationExample
+
+@enduml

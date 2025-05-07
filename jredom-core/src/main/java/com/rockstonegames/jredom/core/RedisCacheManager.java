@@ -1,6 +1,8 @@
 package com.rockstonegames.jredom.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.protobuf.Message;
+import com.google.protobuf.util.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -13,10 +15,31 @@ public class RedisCacheManager {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private SerializationType serializationType = SerializationType.JSON;
+    
+    public enum SerializationType {
+        JSON,
+        PROTOBUF
+    }
+    
+    public void setSerializationType(SerializationType serializationType) {
+        this.serializationType = serializationType;
+    }
+
+    public void setRedisTemplate(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     public <T> void put(String key, T value, Duration ttl) {
         try {
-            String json = objectMapper.writeValueAsString(value);
+            String json;
+            if (serializationType == SerializationType.PROTOBUF && value instanceof Message) {
+                // 处理Protobuf消息
+                json = JsonFormat.printer().print((Message) value);
+            } else {
+                // 处理普通Java对象
+                json = objectMapper.writeValueAsString(value);
+            }
             redisTemplate.opsForValue().set(key, json, ttl);
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,8 +50,21 @@ public class RedisCacheManager {
         try {
             String json = redisTemplate.opsForValue().get(key);
             if (json == null) return Optional.empty();
-            return Optional.of(objectMapper.readValue(json, clazz));
+            
+            if (serializationType == SerializationType.PROTOBUF && Message.class.isAssignableFrom(clazz)) {
+                // 处理Protobuf消息
+                @SuppressWarnings("unchecked")
+                Message.Builder builder = (Message.Builder) clazz.getMethod("newBuilder").invoke(null);
+                JsonFormat.parser().merge(json, builder);
+                @SuppressWarnings("unchecked")
+                T message = (T) builder.build();
+                return Optional.of(message);
+            } else {
+                // 处理普通Java对象
+                return Optional.of(objectMapper.readValue(json, clazz));
+            }
         } catch (Exception e) {
+            e.printStackTrace();
             return Optional.empty();
         }
     }

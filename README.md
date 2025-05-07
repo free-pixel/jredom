@@ -1,5 +1,5 @@
 
-## About JRedom (Beta / Experimental)
+## About JRedom (Experimental / Beta)
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![Last Commit](https://img.shields.io/github/last-commit/free-pixel/jredom)

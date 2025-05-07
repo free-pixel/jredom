@@ -74,6 +74,9 @@ public class RedisConfig {
 
 ```
 
+## Quick Start
+
+You can follow the user guide [here](./docs/jredom-quick-start.en.md) 
 
 ## Background and Motivation
 

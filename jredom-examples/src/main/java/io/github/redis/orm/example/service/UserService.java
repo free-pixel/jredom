@@ -40,7 +40,7 @@ public class UserService {
         userMapper.insert(user);
 
         // 2. Execute custom Redis operation
-        redisOrmFunction.execute();
+        redisOrmFunction.execute(user);
 
         return user;
     }
@@ -56,12 +56,12 @@ public class UserService {
 
     // New pattern with inner function
     @Transactional
-    public User updateUser(User user, RedisOrmFunction redisOrmFunction) {
+    public User updateUser(User user, RedisOrmFunction<User> redisOrmFunction) {
         // 1. Update MySQL
         userMapper.update(user);
 
         // 2. Execute custom Redis operation
-        redisOrmFunction.execute();
+        redisOrmFunction.execute(user);
 
         return user;
     }
@@ -77,12 +77,12 @@ public class UserService {
 
     // New pattern with inner function
     @Transactional
-    public void deleteUser(Long id, RedisOrmFunction redisOrmFunction) {
+    public void deleteUser(Long id, RedisOrmFunction<Long> redisOrmFunction) {
         // 1. Delete from MySQL
         userMapper.delete(id);
 
         // 2. Execute custom Redis operation
-        redisOrmFunction.execute();
+        redisOrmFunction.execute(id);
     }
 
     public User getUser(Long id) {

@@ -16,7 +16,7 @@ All commits submitted through GitHub's web interface or via Git CLI must be sign
 
 #### ✅ GitHub Web Interface
 
-When editing files directly on GitHub.com, please check the “Sign off” box before committing.
+When editing files directly on GitHub.com, please check the "Sign off" box before committing.
 
 #### ✅ Git CLI
 
@@ -24,3 +24,21 @@ Use the `-s` option when making a commit:
 
 ```bash
 git commit -s -m "Your commit message"
+```
+
+## Commit Message Guidelines
+
+This project uses a commit message template to standardize commit messages. To use it:
+
+1. The template is automatically configured when you clone the repository
+2. If you need to set it up manually, run:
+   ```bash
+   git config --local commit.template .gitmessage
+   ```
+3. Follow the format in the template for all your commits
+4. The template includes:
+   - Type of change (feat, fix, docs, etc.)
+   - Short description
+   - Optional detailed description
+   - Optional task references
+   - Optional breaking changes

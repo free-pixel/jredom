@@ -1,4 +1,4 @@
-package com.rockstonegames.redisorm.core;
+package com.rockstonegames.jredom.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

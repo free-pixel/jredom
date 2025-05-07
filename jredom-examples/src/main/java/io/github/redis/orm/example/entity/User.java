@@ -1,6 +1,6 @@
 package io.github.redis.orm.example.entity;
 
-import com.rockstonegame.redisorm.core.EntityWithId;
+import com.rockstonegames.jredom.core.EntityWithId;
 
 public class User implements EntityWithId<Long> {
     private Long id;

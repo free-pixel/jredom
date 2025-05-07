@@ -2,8 +2,9 @@ package io.github.redis.orm.example.service;
 
 import io.github.redis.orm.example.entity.User;
 import io.github.redis.orm.example.mapper.UserMapper;
-import com.rockstonegame.redisorm.core.RedisOrmFunction;
-import com.rockstonegame.redisorm.core.RedisOrmServiceImpl;
+import com.rockstonegames.jredom.core.RedisOrmFunction;
+import com.rockstonegames.jredom.core.RedisOrmServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,10 +13,10 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    
+
     @Autowired
     private UserMapper userMapper;
-    
+
     @Autowired
     private RedisOrmServiceImpl<User, Long> redisOrmService;
 
@@ -37,10 +38,10 @@ public class UserService {
     public User createUser(User user, RedisOrmFunction redisOrmFunction) {
         // 1. Save to MySQL
         userMapper.insert(user);
-        
+
         // 2. Execute custom Redis operation
         redisOrmFunction.execute();
-        
+
         return user;
     }
 
@@ -58,10 +59,10 @@ public class UserService {
     public User updateUser(User user, RedisOrmFunction redisOrmFunction) {
         // 1. Update MySQL
         userMapper.update(user);
-        
+
         // 2. Execute custom Redis operation
         redisOrmFunction.execute();
-        
+
         return user;
     }
 
@@ -79,7 +80,7 @@ public class UserService {
     public void deleteUser(Long id, RedisOrmFunction redisOrmFunction) {
         // 1. Delete from MySQL
         userMapper.delete(id);
-        
+
         // 2. Execute custom Redis operation
         redisOrmFunction.execute();
     }
@@ -90,7 +91,7 @@ public class UserService {
         if (userFromCache.isPresent()) {
             return userFromCache.get();
         }
-        
+
         // 2. If not in Redis, get from MySQL and cache it
         User userFromDb = userMapper.findById(id);
         if (userFromDb != null) {

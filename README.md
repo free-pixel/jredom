@@ -56,7 +56,7 @@ summary: the only problem is how to control the invoke time, and the invoke mech
 
 synchronous call ；synchronized call 。
 
-**add protobuf serial/deserial object**
+## add protobuf serial/deserial object
 
 you can use spring manager your serial type, default is json, you can change to protobuf.
 

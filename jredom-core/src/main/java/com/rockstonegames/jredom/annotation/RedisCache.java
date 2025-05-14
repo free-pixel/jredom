@@ -16,12 +16,12 @@ public @interface RedisCache {
      * 缓存操作类型
      */
     CacheOperationType operation() default CacheOperationType.SAVE;
-    
+
     /**
      * 实体ID的参数索引，默认为0
      */
     int idParamIndex() default 0;
-    
+
     /**
      * 缓存过期时间（分钟）
      */

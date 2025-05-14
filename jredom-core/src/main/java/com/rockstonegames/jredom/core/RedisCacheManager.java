@@ -16,12 +16,12 @@ public class RedisCacheManager {
     private RedisTemplate<String, String> redisTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private SerializationType serializationType = SerializationType.JSON;
-    
+
     public enum SerializationType {
         JSON,
         PROTOBUF
     }
-    
+
     public void setSerializationType(SerializationType serializationType) {
         this.serializationType = serializationType;
     }
@@ -34,10 +34,10 @@ public class RedisCacheManager {
         try {
             String json;
             if (serializationType == SerializationType.PROTOBUF && value instanceof Message) {
-                // 处理Protobuf消息
+                // Process Protobuf message
                 json = JsonFormat.printer().print((Message) value);
             } else {
-                // 处理普通Java对象
+                // Process java object
                 json = objectMapper.writeValueAsString(value);
             }
             redisTemplate.opsForValue().set(key, json, ttl);
@@ -50,17 +50,17 @@ public class RedisCacheManager {
         try {
             String json = redisTemplate.opsForValue().get(key);
             if (json == null) return Optional.empty();
-            
+
             if (serializationType == SerializationType.PROTOBUF && Message.class.isAssignableFrom(clazz)) {
-                // 处理Protobuf消息
+                // Process Protobuf message
                 @SuppressWarnings("unchecked")
-                Message.Builder builder = (Message.Builder) clazz.getMethod("newBuilder").invoke(null);
+                Message.Builder builder = (Message.Builder) clazz.getMethod("newBuilder").invoke(null); // Get method signature
                 JsonFormat.parser().merge(json, builder);
                 @SuppressWarnings("unchecked")
                 T message = (T) builder.build();
                 return Optional.of(message);
             } else {
-                // 处理普通Java对象
+                // Process java object
                 return Optional.of(objectMapper.readValue(json, clazz));
             }
         } catch (Exception e) {

@@ -23,20 +23,20 @@ public class RedisCacheAspect {
 
     @Around("@annotation(com.rockstonegames.jredom.annotation.RedisCache)")
     public Object handleRedisCache(ProceedingJoinPoint joinPoint) throws Throwable {
-        // 获取方法签名
+        // Get method signature
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-        
-        // 获取注解
+
+        // Get method signature
         RedisCache redisCache = method.getAnnotation(RedisCache.class);
-        
-        // 获取参数
+
+        // Get method args
         Object[] args = joinPoint.getArgs();
-        
-        // 执行原方法
+
+        // Get method invoked result
         Object result = joinPoint.proceed();
-        
-        // 根据操作类型处理缓存
+
+        // process cache operation
         switch (redisCache.operation()) {
             case SAVE:
                 handleSaveOperation(result, redisCache.expireMinutes());
@@ -48,10 +48,10 @@ public class RedisCacheAspect {
                 handleRefreshOperation(args, redisCache.idParamIndex());
                 break;
         }
-        
+
         return result;
     }
-    
+
     private void handleSaveOperation(Object result, int expireMinutes) {
         if (result instanceof EntityWithId) {
             EntityWithId<?> entity = (EntityWithId<?>) result;
@@ -60,11 +60,11 @@ public class RedisCacheAspect {
             cacheManager.put(key, entity, Duration.ofMinutes(expireMinutes));
         }
     }
-    
+
     private void handleDeleteOperation(Object[] args, int idParamIndex) {
         if (args.length > idParamIndex) {
             Object id = args[idParamIndex];
-            // 需要知道实体类型，这里简化处理
+            // Need to know entity type, simplified handling here
             if (args.length > idParamIndex + 1 && args[idParamIndex + 1] instanceof Class) {
                 Class<?> entityClass = (Class<?>) args[idParamIndex + 1];
                 String key = com.rockstonegames.jredom.core.CacheKeyGenerator.generate(
@@ -73,9 +73,9 @@ public class RedisCacheAspect {
             }
         }
     }
-    
+
     private void handleRefreshOperation(Object[] args, int idParamIndex) {
-        // 刷新操作实际上就是删除缓存
+        // Refresh operation is essentially a cache deletion
         handleDeleteOperation(args, idParamIndex);
     }
 }

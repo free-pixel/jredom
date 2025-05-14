@@ -8,12 +8,12 @@ public enum CacheOperationType {
      * 保存或更新缓存
      */
     SAVE,
-    
+
     /**
      * 删除缓存
      */
     DELETE,
-    
+
     /**
      * 刷新缓存
      */

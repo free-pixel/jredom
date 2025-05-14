@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
 public class ProtobufRedisConfig {
-    
+
     @Bean
     public RedisCacheManager protobufRedisCacheManager(RedisTemplate<String, String> redisTemplate) {
         RedisCacheManager manager = new RedisCacheManager();

@@ -38,11 +38,11 @@ public class AnnotationUserService {
         // 先从Redis获取
         String key = com.rockstonegames.jredom.core.CacheKeyGenerator.generate(User.class, id);
         java.util.Optional<User> userFromCache = new com.rockstonegames.jredom.core.RedisCacheManager().get(key, User.class);
-        
+
         if (userFromCache.isPresent()) {
             return userFromCache.get();
         }
-        
+
         // 如果Redis中没有，从数据库获取并缓存
         User userFromDb = userMapper.findById(id);
         if (userFromDb != null) {
@@ -50,7 +50,7 @@ public class AnnotationUserService {
         }
         return userFromDb;
     }
-    
+
     @RedisCache(operation = CacheOperationType.SAVE)
     private User saveToCache(User user) {
         return user;
